@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO и Маркетинг -->
+    <title>I seek you | Поиск подписчиков</title>
+    <meta name="description" content="База подписчиков Instagram. Найди себя в списке.">
+    <meta name="keywords" content="instagram, подписчики, поиск, база имен, i seek you">
+    <meta name="author" content="Ваше Имя">
+    
+    <!-- Open Graph для красивых ссылок в соцсетях -->
+    <meta property="og:title" content="I seek you">
+    <meta property="og:description" content="Список моих подписчиков. Ищи себя здесь.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=I+Seek+You"> <!-- Сюда вставите ссылку на вашу картинку позже -->
+
+    <!-- Стили (CSS) -->
+    <style>
+        :root {
+            --insta-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --bg-color: #fafafa;
+            --text-color: #262626;
+            --secondary-text: #8e8e8e;
+            --border-color: #dbdbdb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Шапка */
+        header {
+            width: 100%;
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            font-weight: 600;
+            background: var(--insta-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        /* Контейнер */
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Поиск */
+        .search-box {
+            position: relative;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            outline: none;
+            box-sizing: border-box;
+            transition: 0.2s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #a8a8a8;
+        }
+
+        /* Список имен */
+        .names-list {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            max-height: 70vh; /* Ограничение высоты */
+            overflow-y: auto; /* Прокрутка */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .names-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .name-tag {
+            font-size: 12px; /* Мелкий шрифт по запросу */
+            color: var(--text-color);
+            background: #f0f0f0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .name-tag:hover {
+            background: #e0e0e0;
+            color: #000;
+        }
+
+        /* Статистика */
+        .stats {
+            font-size: 12px;
+            color: var(--secondary-text);
+            text-align: right;
+            margin-top: 5px;
+        }
+
+        /* Адаптив под мобильные */
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.2rem;
+            }
+            .names-list {
+                max-height: 80vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>I seek you</h1>
+    </header>
+
+    <div class="container">
+        <!-- Поле поиска -->
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Поиск по имени подписчика...">
+        </div>
+
+        <!-- Окно со списком -->
+        <div class="names-list">
+            <div id="namesGrid" class="names-grid">
+                <!-- Сюда JavaScript вставит имена -->
+            </div>
+            <div id="stats" class="stats"></div>
+        </div>
+        
+        <!-- Инструкция для админа (визуально скрыта от обычных глаз, но понятна вам) -->
+        <div style="font-size: 10px; color: #ccc; text-align: center;">
+            Admin: Edit names array in script.js
+        </div>
+    </div>
+
+    <!-- Скрипт (Логика) -->
+    <script>
+        // ==========================================
+        // ЗОНА РЕДАКТИРОВАНИЯ (ВАША БАЗА ДАННЫХ)
+        // ==========================================
+        // Добавляйте сюда новые имена в кавычках через запятую
+        const subscribers = [
+            "anna_kozlova",
+            "ivan_petrov",
+            "design_master",
+            "travel_lover_22",
+            "fitness_guru",
+            "coffee_addict",
+            "music_vibes",
+            "art_gallery",
+            "photo_hunter",
+            "smm_expert",
+            "marketing_pro",
+            "web_developer",
+            "insta_star",
+            "blogger_life",
+            "fashion_week",
+            "style_icon",
+            "foodie_blog",
+            "healthy_eat",
+            "yoga_time",
+            "meditation_zone",
+            "crypto_news",
+            "invest_money",
+            "start_up_idea",
+            "business_mind",
+            "success_story",
+            "motivation_daily",
+            "quotes_of_life",
+            "book_lover",
+            "movie_fan",
+            "gamer_zone",
+            "tech_news",
+            "apple_fan",
+            "android_user",
+            "windows_os",
+            "linux_master",
+            "python_coder",
+            "js_developer",
+            "html_css",
+            "react_js",
+            "vue_js",
+            "angular_dev",
+            "node_js",
+            "php_code",
+            "ruby_dev",
+            "go_lang",
+            "rust_lang",
+            "swift_ios",
+            "kotlin_android",
+            "flutter_dev",
+            "react_native"
+        ];
+        // ==========================================
+
+        const searchInput = document.getElementById('searchInput');
+        const namesGrid = document.getElementById('namesGrid');
+        const statsDiv = document.getElementById('stats');
+
+        // Функция отрисовки списка
+        function renderList(list) {
+            namesGrid.innerHTML = '';
+            
+            if (list.length === 0) {
+                namesGrid.innerHTML = '<div style="width:100%; text-align:center; color:#999; padding:20px;">Ничего не найдено :(</div>';
+                statsDiv.innerText = `Найдено: 0`;
+                return;
+            }
+
+            list.forEach(name => {
+                const tag = document.createElement('a');
+                tag.className = 'name-tag';
+                tag.innerText = name;
+                // Ссылка на профиль инстаграм (опционально)
+                tag.href = `https://instagram.com/${name}`;
+                tag.target = "_blank";
+                namesGrid.appendChild(tag);
+            });
+
+            statsDiv.innerText = `Всего в базе: ${subscribers.length} | Показано: ${list.length}`;
+        }
+
+        // Функция поиска
+        function filterNames(query) {
+            const lowerQuery = query.toLowerCase();
+            const filtered = subscribers.filter(name => 
+                name.toLowerCase().includes(lowerQuery)
+            );
+            renderList(filtered);
+        }
+
+        // Слушатель ввода
+        searchInput.addEventListener('input', (e) => {
+            filterNames(e.target.value);
+        });
+
+        // Первичная отрисовка
+        renderList(subscribers);
+
+    </script>
+</body>
+</html>
